@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="168dp"
-        android:text="Logo"
+        android:text="@string/logo"
         android:textColor="@color/white"
         android:textSize="@dimen/logo_size"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,10 +28,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/username"
         android:inputType="textPersonName"
-        android:paddingLeft="@dimen/left_padding_within_editText"
-        android:drawableLeft="@drawable/ic_action_user"
+        android:paddingStart="@dimen/left_padding_within_editText"
+        android:drawableStart="@drawable/ic_action_user"
         android:textColor="@color/textColor"
         android:textColorHint="@color/textColor"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,13 +45,13 @@
         android:layout_marginTop="60dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:drawableLeft="@drawable/ic_action_pass"
+        android:drawableStart="@drawable/ic_action_pass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameEditText"
-        android:hint="Password"
+        android:hint="@string/password"
         android:textColorHint="@color/textColor"
-        android:paddingLeft="@dimen/left_padding_within_editText"
+        android:paddingStart="@dimen/left_padding_within_editText"
         />
 
     <androidx.cardview.widget.CardView
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Login"
+                android:text="@string/login"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
         </RelativeLayout>
@@ -86,9 +86,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Don't have an account? Register here."
+        android:text="@string/don_t_have_an_account_register_here"
         android:textColor="@color/textColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@+id/loginCardView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
