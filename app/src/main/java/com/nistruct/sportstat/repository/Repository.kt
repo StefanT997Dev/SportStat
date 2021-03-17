@@ -1,10 +1,16 @@
 package com.nistruct.sportstat.repository
 
 import com.nistruct.sportstat.api.RetrofitInstance
-import com.nistruct.sportstat.data.models.User
+import com.nistruct.sportstat.data.models.api_models.User
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class Repository {
-    suspend fun getPlayers():List<User>{
-        return RetrofitInstance.playerApi.getPlayers()
+    suspend fun getPlayers():Flow<List<User>> {
+        val flow=flow<List<User>> {
+            emit(RetrofitInstance.playerApi.getPlayers())
+        }
+
+        return flow
     }
 }

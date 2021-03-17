@@ -13,7 +13,7 @@
         android:screenOrientation="landscape"
         android:theme="@style/Theme.Sportstat">
         <activity
-            android:name=".PlayersRecyclerView"
+            android:name=".player_recycler_view.PlayersActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.Design.NoActionBar"
             android:exported="true">
