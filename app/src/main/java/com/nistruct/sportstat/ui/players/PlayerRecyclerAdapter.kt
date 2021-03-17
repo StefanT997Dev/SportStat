@@ -1,4 +1,4 @@
-package com.nistruct.sportstat.player_recycler_view
+package com.nistruct.sportstat.ui.players
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

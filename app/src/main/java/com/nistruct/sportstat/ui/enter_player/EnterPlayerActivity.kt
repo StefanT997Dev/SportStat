@@ -1,7 +1,8 @@
-package com.nistruct.sportstat
+package com.nistruct.sportstat.ui.enter_player
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.nistruct.sportstat.R
 
 class EnterPlayerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

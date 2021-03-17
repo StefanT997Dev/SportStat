@@ -1,7 +1,8 @@
-package com.nistruct.sportstat
+package com.nistruct.sportstat.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.nistruct.sportstat.R
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
