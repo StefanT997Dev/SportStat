@@ -7,11 +7,6 @@
     android:background="@drawable/gradient"
     tools:context=".PlayersRecyclerView">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addPlayerFab"
         android:layout_width="427dp"

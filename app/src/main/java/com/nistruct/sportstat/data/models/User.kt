@@ -4,13 +4,13 @@ import java.sql.Blob
 import java.util.*
 
 data class User(
-    var id:UUID,
+    var id:Int,
     var name:String,
-    var photo:Blob,
-    var position:Position,
+    var photo:String,
+    var position:String,
     var email:String,
     var phoneNumber:String,
-    var team:Team,
-    var sport:Sport,
+    var team:String,
+    var sport:String,
     var isTrainer:Boolean
 )
