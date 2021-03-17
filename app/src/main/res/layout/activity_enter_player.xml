@@ -81,32 +81,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playerEmailEditText" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/createPlayerCardView"
+    <Button
+        android:id="@+id/savePlayerButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="36dp"
-        app:cardBackgroundColor="@color/buttonColor"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="10dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/login"
+        android:textAllCaps="false"
+        android:textColor="@color/textColor"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roleOfPlayerSpinner">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/create_player"
-                android:textColor="@color/textColor"
-                android:textSize="18sp" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toBottomOf="@+id/roleOfPlayerSpinner" />
 
     <Spinner
         android:id="@+id/roleOfPlayerSpinner"

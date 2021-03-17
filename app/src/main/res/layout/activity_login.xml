@@ -43,43 +43,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:ems="10"
-        android:inputType="textPassword"
         android:drawableStart="@drawable/ic_action_pass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameEditText"
+        android:ems="10"
         android:hint="@string/password"
-        android:textColorHint="@color/textColor"
+        android:inputType="textPassword"
         android:paddingStart="@dimen/left_padding_within_editText"
-        />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/loginCardView"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="60dp"
-        app:cardBackgroundColor="@color/buttonColor"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="10dp"
+        android:textColorHint="@color/textColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText">
+        app:layout_constraintTop_toBottomOf="@+id/usernameEditText" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/login"
-                android:textColor="@color/textColor"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/registerTextView"
@@ -89,6 +62,21 @@
         android:text="@string/don_t_have_an_account_register_here"
         android:textColor="@color/textColor"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginCardView" />
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/login"
+        android:textAllCaps="false"
+        android:textColor="@color/textColor"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
