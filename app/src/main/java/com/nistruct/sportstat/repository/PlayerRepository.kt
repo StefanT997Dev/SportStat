@@ -1,6 +1,7 @@
 package com.nistruct.sportstat.repository
 
-import com.nistruct.sportstat.data.models.api_models.Player
+import com.nistruct.sportstat.data.models.api_models.PlayerResponse
+import com.nistruct.sportstat.data.models.ui_models.Player
 import kotlinx.coroutines.flow.Flow
 
 interface PlayerRepository {

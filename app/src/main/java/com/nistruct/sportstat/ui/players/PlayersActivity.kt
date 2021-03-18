@@ -17,8 +17,6 @@ class PlayersActivity : AppCompatActivity() {
 
     private lateinit var playerAdapter: PlayerRecyclerAdapter
 
-    private var playersList:MutableList<Player> = mutableListOf()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_players_recycler_view)
@@ -29,19 +27,9 @@ class PlayersActivity : AppCompatActivity() {
         val viewModelFactory = PlayersViewModelFactory(repository)
         viewModel = ViewModelProvider(this,viewModelFactory).get(PlayersViewModel::class.java)
         viewModel.getPlayers()
-        viewModel.playersLiveData.observe(this, Observer {listOfPlayersResponse->
-            for(player in listOfPlayersResponse){
-                var uiPlayer:Player=Player(player.name,player.position,player.photo)
-                playersList.add(uiPlayer)
-            }
-        })
-
-        addDataSet()
-    }
-
-    private fun addDataSet(){
-        val data=playersList
-        playerAdapter.submitList(data)
+        viewModel.playersLiveData.observe(this) {listOfPlayers->
+            playerAdapter.submitList(listOfPlayers)
+        }
     }
 
     private fun initRecyclerView(){

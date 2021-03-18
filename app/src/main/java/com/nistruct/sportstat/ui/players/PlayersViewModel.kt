@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nistruct.sportstat.data.models.api_models.Player
+import com.nistruct.sportstat.data.models.api_models.PlayerResponse
+import com.nistruct.sportstat.data.models.ui_models.Player
 import com.nistruct.sportstat.repository.PlayerRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
