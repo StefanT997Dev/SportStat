@@ -7,6 +7,7 @@
     app:cardElevation="10dp"
     app:cardCornerRadius="2dp"
     app:cardPreventCornerOverlap="false"
+    app:cardBackgroundColor="@color/buttonColor"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout

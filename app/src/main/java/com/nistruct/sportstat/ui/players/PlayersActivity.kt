@@ -10,7 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nistruct.sportstat.R
 import com.nistruct.sportstat.data.models.ui_models.Player
 import com.nistruct.sportstat.repository.PlayerRepositoryImpl
+import com.nistruct.sportstat.usecase.GetPlayersUseCase
+import com.nistruct.sportstat.usecase.GetPlayersUseCaseImpl
+import com.nistruct.sportstat.usecase.result.DataResult
 import kotlinx.android.synthetic.main.activity_players_recycler_view.*
+import kotlinx.coroutines.Dispatchers
 
 class PlayersActivity : AppCompatActivity() {
     private lateinit var viewModel: PlayersViewModel
@@ -24,11 +28,15 @@ class PlayersActivity : AppCompatActivity() {
         initRecyclerView()
 
         val repository = PlayerRepositoryImpl()
-        val viewModelFactory = PlayersViewModelFactory(repository)
+        val viewModelFactory = PlayersViewModelFactory(GetPlayersUseCaseImpl(repository,Dispatchers.IO))
         viewModel = ViewModelProvider(this,viewModelFactory).get(PlayersViewModel::class.java)
         viewModel.getPlayers()
-        viewModel.playersLiveData.observe(this) {listOfPlayers->
-            playerAdapter.submitList(listOfPlayers)
+        viewModel.playersLiveData.observe(this) {result->
+            when(result){
+                is DataResult.Success -> playerAdapter.submitList(result.data)
+                is DataResult.Loading -> {}
+                is DataResult.Error -> {}
+            }
         }
     }
 
