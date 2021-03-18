@@ -2,18 +2,28 @@ package com.nistruct.sportstat.ui.players
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nistruct.sportstat.R
+import com.nistruct.sportstat.data.models.ui_models.Player
 import com.nistruct.sportstat.repository.PlayerRepositoryImpl
+import kotlinx.android.synthetic.main.activity_players_recycler_view.*
 
 class PlayersActivity : AppCompatActivity() {
     private lateinit var viewModel: PlayersViewModel
 
+    private lateinit var playerAdapter: PlayerRecyclerAdapter
+
+    private var playersList:MutableList<Player> = mutableListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_players_recycler_view)
+
+        initRecyclerView()
 
         val repository = PlayerRepositoryImpl()
         val viewModelFactory = PlayersViewModelFactory(repository)
@@ -21,10 +31,22 @@ class PlayersActivity : AppCompatActivity() {
         viewModel.getPlayers()
         viewModel.playersLiveData.observe(this, Observer {listOfPlayersResponse->
             for(player in listOfPlayersResponse){
-                Log.d("Response",player.name)
-                Log.d("Response",player.position)
-                Log.d("Response",player.photo)
+                var uiPlayer:Player=Player(player.name,player.position,player.photo)
+                playersList.add(uiPlayer)
             }
         })
+
+        addDataSet()
+    }
+
+    private fun addDataSet(){
+        val data=playersList
+        playerAdapter.submitList(data)
+    }
+
+    private fun initRecyclerView(){
+        playerRecyclerView.layoutManager = LinearLayoutManager(this@PlayersActivity)
+        playerAdapter= PlayerRecyclerAdapter()
+        playerRecyclerView.adapter=playerAdapter
     }
 }
