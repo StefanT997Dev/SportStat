@@ -1,20 +1,19 @@
 package com.nistruct.sportstat.ui.players
 
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.material.internal.ContextUtils.getActivity
 import com.nistruct.sportstat.R
-import com.nistruct.sportstat.data.models.ui_models.Player
 import com.nistruct.sportstat.repository.PlayerRepositoryImpl
-import com.nistruct.sportstat.usecase.GetPlayersUseCase
 import com.nistruct.sportstat.usecase.GetPlayersUseCaseImpl
 import com.nistruct.sportstat.usecase.result.DataResult
 import kotlinx.android.synthetic.main.activity_players_recycler_view.*
 import kotlinx.coroutines.Dispatchers
+
 
 class PlayersActivity : AppCompatActivity() {
     private lateinit var viewModel: PlayersViewModel
@@ -28,15 +27,31 @@ class PlayersActivity : AppCompatActivity() {
         initRecyclerView()
 
         val repository = PlayerRepositoryImpl()
-        val viewModelFactory = PlayersViewModelFactory(GetPlayersUseCaseImpl(repository,Dispatchers.IO))
-        viewModel = ViewModelProvider(this,viewModelFactory).get(PlayersViewModel::class.java)
+        val viewModelFactory = PlayersViewModelFactory(
+            GetPlayersUseCaseImpl(
+                repository,
+                Dispatchers.IO
+            )
+        )
+        viewModel = ViewModelProvider(this, viewModelFactory).get(PlayersViewModel::class.java)
         viewModel.getPlayers()
-        viewModel.playersLiveData.observe(this) {result->
+        viewModel.playersLiveData.observe(this) { result->
             when(result){
                 is DataResult.Success -> playerAdapter.submitList(result.data)
-                is DataResult.Loading -> {}
-                is DataResult.Error -> {}
+                is DataResult.Loading -> {
+                }
+                is DataResult.Error -> {
+                }
             }
+        }
+
+        // Google sign in
+        val acct = GoogleSignIn.getLastSignedInAccount(this)
+        if (acct != null) {
+            val personName = acct.displayName
+            val personEmail = acct.email
+            val personId = acct.id
+            val personPhoto: Uri? = acct.photoUrl
         }
     }
 
