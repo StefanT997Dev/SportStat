@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:gravity="center"
+    android:orientation="horizontal"
+    >
+
+    <ImageView
+        android:id="@+id/playerImageView"
+        android:layout_width="307dp"
+        android:layout_height="236dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="180dp"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/playerEmailEditText"
+        android:layout_width="725dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="@string/player_e_mail"
+        android:inputType="textPersonName"
+        android:paddingStart="@dimen/left_padding_within_editText"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/textColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerNameEditText" />
+
+    <TextView
+        android:id="@+id/addImageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Add Image"
+        android:textColor="@color/textColor"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerImageView" />
+
+    <EditText
+        android:id="@+id/playerNameEditText"
+        android:layout_width="725dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="180dp"
+        android:ems="10"
+        android:hint="@string/player_name"
+        android:inputType="textPersonName"
+        android:paddingStart="@dimen/left_padding_within_editText"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/textColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/playerPhoneNumberEditText"
+        android:layout_width="725dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="@string/player_phone_number"
+        android:inputType="textPersonName"
+        android:paddingStart="@dimen/left_padding_within_editText"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/textColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerEmailEditText" />
+
+    <Button
+        android:id="@+id/savePlayerButton"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/login"
+        android:textAllCaps="false"
+        android:textColor="@color/textColor"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roleOfPlayerSpinner" />
+
+    <Spinner
+        android:id="@+id/roleOfPlayerSpinner"
+        android:layout_width="417dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="40dp"
+        android:entries="@array/player_roles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerPhoneNumberEditText" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
