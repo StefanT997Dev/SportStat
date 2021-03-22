@@ -12,5 +12,5 @@ interface PlayerRepository {
                            playerEmail:String,
                            playerPhoneNumber:String,
                            playerPosition:String,
-                           playerImage:String): Flow<Player>
+                           playerImage:String): Flow<PostPlayerRequestBody>
 }

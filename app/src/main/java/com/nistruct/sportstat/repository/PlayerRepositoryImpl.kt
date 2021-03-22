@@ -30,7 +30,7 @@ class PlayerRepositoryImpl : PlayerRepository {
                                     playerPhoneNumber:String,
                                     playerPosition:String,
                                     playerImage:String) = flow {
-        val postPlayerRequest:PostPlayerRequestBody=PostPlayerRequestBody(playerName,
+        val postPlayerRequest=PostPlayerRequestBody(playerName,
                 playerEmail,playerPhoneNumber,playerPosition,playerImage)
 
         emit(RetrofitInstance.playerApi.postPlayer(postPlayerRequest))
