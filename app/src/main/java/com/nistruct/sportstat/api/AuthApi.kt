@@ -6,7 +6,6 @@ import retrofit2.http.POST
 
 interface AuthApi{
 
-    @FormUrlEncoded
     @POST("auth/login")
     fun login(
         @Field("username")username:String,

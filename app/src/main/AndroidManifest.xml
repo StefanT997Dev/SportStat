@@ -13,7 +13,7 @@
         android:screenOrientation="landscape"
         android:theme="@style/Theme.Sportstat">
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.enter_player.EnterPlayerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.Design.NoActionBar"
             android:exported="true">
