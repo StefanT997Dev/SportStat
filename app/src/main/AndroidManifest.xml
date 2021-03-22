@@ -13,7 +13,7 @@
         android:screenOrientation="landscape"
         android:theme="@style/Theme.Sportstat">
         <activity
-            android:name=".ui.players.PlayersActivity"
+            android:name=".ui.enter_player.EnterPlayerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.Design.NoActionBar"
             android:exported="true">
@@ -23,6 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.players.PlayersActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Design.NoActionBar"
+            android:parentActivityName=".ui.login.LoginActivity" />
     </application>
 
 </manifest>

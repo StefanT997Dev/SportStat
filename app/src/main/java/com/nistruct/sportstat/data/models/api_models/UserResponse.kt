@@ -3,7 +3,7 @@ package com.nistruct.sportstat.data.models.api_models
 import java.sql.Blob
 import java.util.*
 
-data class PlayerResponse(
+data class UserResponse(
     val id:Int,
     val name:String,
     val photo:String,
