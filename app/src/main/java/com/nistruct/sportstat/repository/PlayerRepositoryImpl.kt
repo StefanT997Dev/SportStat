@@ -6,6 +6,7 @@ import com.nistruct.sportstat.data.mappers.PlayerResponseToPlayerMapper
 import com.nistruct.sportstat.data.models.api_models.PostPlayerRequestBody
 import com.nistruct.sportstat.data.models.api_models.UserResponse
 import com.nistruct.sportstat.data.models.ui_models.Player
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
@@ -17,7 +18,8 @@ class PlayerRepositoryImpl : PlayerRepository {
         emit(RetrofitInstance.playerApi.getPlayers())
     }
         .map { playerResponseList ->
-            playerResponseList.map { playerResponse ->
+            playerResponseList.filter{ !it.isTrainer }
+                .map { playerResponse ->
                 playerResponseToUserMapper.map(playerResponse)
             }
         }
