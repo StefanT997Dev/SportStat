@@ -8,9 +8,10 @@ import kotlinx.coroutines.flow.Flow
 interface PlayerRepository {
     suspend fun getPlayers(): Flow<List<Player>>
 
-    suspend fun postPlayer(playerName:String,
+    suspend fun postPlayer(
+                           playerName:String,
                            playerEmail:String,
                            playerPhoneNumber:String,
                            playerPosition:String,
-                           playerImage:String): Flow<PostPlayerRequestBody>
+                           playerImage:String): Flow<Player>
 }
