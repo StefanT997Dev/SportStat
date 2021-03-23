@@ -20,7 +20,7 @@ data class PostPlayerUseCaseRequest(
     val playerImage: String
 )
 
-class PostPlayerUseCaseImpl(
+class PostPlayerUseCaseImpl (
     private val playerRepository: PlayerRepository,
     private val coroutineDispatcher: CoroutineDispatcher
 ) : PostPlayerUseCase {

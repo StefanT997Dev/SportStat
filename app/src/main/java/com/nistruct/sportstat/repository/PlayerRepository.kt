@@ -3,6 +3,7 @@ package com.nistruct.sportstat.repository
 import com.nistruct.sportstat.data.models.api_models.PostPlayerRequestBody
 import com.nistruct.sportstat.data.models.api_models.UserResponse
 import com.nistruct.sportstat.data.models.ui_models.Player
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 
 interface PlayerRepository {
