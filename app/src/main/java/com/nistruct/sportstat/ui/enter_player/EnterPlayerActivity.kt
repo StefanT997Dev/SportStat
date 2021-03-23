@@ -38,6 +38,10 @@ class EnterPlayerActivity : AppCompatActivity() {
         viewModel.playerLiveData.observe(this){result->
             when(result){
                 is DataResult.Success->{ Log.d("Response",result.data.name)}
+                is DataResult.Error->{Log.d("Response","Error bro")}
+                is DataResult.Loading-> {
+                    // Implement spinner
+                }
             }
         }
     }
