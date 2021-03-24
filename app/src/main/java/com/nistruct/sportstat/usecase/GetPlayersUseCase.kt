@@ -7,12 +7,15 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 interface GetPlayersUseCase {
     suspend fun execute(): Flow<DataResult<List<Player>>>
 }
 
-class GetPlayersUseCaseImpl (
+class GetPlayersUseCaseImpl
+@Inject
+constructor(
     private val playerRepository: PlayerRepository,
     private val coroutineDispatcher: CoroutineDispatcher
 ):GetPlayersUseCase{

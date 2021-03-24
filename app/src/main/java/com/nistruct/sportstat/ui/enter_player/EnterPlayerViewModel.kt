@@ -9,8 +9,11 @@ import com.nistruct.sportstat.usecase.PostPlayerUseCaseRequest
 import com.nistruct.sportstat.usecase.result.DataResult
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EnterPlayerViewModel(
+class EnterPlayerViewModel
+@Inject
+constructor(
     private val useCase: PostPlayerUseCase
 ) : ViewModel(),
     EnterPlayerViewModelContract {

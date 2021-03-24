@@ -9,34 +9,36 @@ import com.nistruct.sportstat.data.models.api_models.UserResponse
 import com.nistruct.sportstat.data.models.ui_models.Player
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
 
-class PlayerRepositoryImpl : PlayerRepository {
-    private val playerResponseToUserMapper: DataMapper<UserResponse, Player> =
-        PlayerResponseToPlayerMapper()
-
-    private val userResponseToPlayerMapper: DataMapper<UserResponse, Player> =
-        UserResponseToPlayerMapper()
-
+class PlayerRepositoryImpl
+@Inject
+constructor(
+    private val userResponseToPlayerMapper: UserResponseToPlayerMapper
+) : PlayerRepository {
     override suspend fun getPlayers() = flow {
         emit(RetrofitInstance.playerApi.getPlayers())
     }
         .map { playerResponseList ->
-            playerResponseList.filter{ !it.isTrainer }
+            playerResponseList.filter { !it.isTrainer }
                 .map { playerResponse ->
-                playerResponseToUserMapper.map(playerResponse)
-            }
+                    userResponseToPlayerMapper.map(playerResponse)
+                }
         }
 
 
     override suspend fun postPlayer(
-                                    playerName:String,
-                                    playerEmail:String,
-                                    playerPhoneNumber:String,
-                                    playerPosition:String,
-                                    playerImage:String) = flow {
-        val postPlayerRequest=PostPlayerRequestBody(null,playerName,
-                playerEmail,playerPhoneNumber,playerPosition,playerImage)
+        playerName: String,
+        playerEmail: String,
+        playerPhoneNumber: String,
+        playerPosition: String,
+        playerImage: String
+    ) = flow {
+        val postPlayerRequest = PostPlayerRequestBody(
+            null, playerName,
+            playerEmail, playerPhoneNumber, playerPosition, playerImage
+        )
 
         emit(RetrofitInstance.playerApi.postPlayer(postPlayerRequest))
     }

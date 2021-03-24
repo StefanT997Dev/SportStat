@@ -13,9 +13,12 @@ import com.nistruct.sportstat.usecase.GetPlayersUseCaseImpl
 import com.nistruct.sportstat.usecase.result.DataResult
 import kotlinx.android.synthetic.main.activity_players_recycler_view.*
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
 
 class PlayersActivity : AppCompatActivity() {
+    @Inject lateinit var playersViewModelFactory:PlayersViewModelFactory
+
     private lateinit var viewModel: PlayersViewModel
 
     private lateinit var playerAdapter: PlayerRecyclerAdapter
@@ -26,14 +29,7 @@ class PlayersActivity : AppCompatActivity() {
 
         initRecyclerView()
 
-        val repository = PlayerRepositoryImpl()
-        val viewModelFactory = PlayersViewModelFactory(
-            GetPlayersUseCaseImpl(
-                repository,
-                Dispatchers.IO
-            )
-        )
-        viewModel = ViewModelProvider(this, viewModelFactory).get(PlayersViewModel::class.java)
+        viewModel = ViewModelProvider(this, playersViewModelFactory).get(PlayersViewModel::class.java)
         viewModel.getPlayers()
         viewModel.playersLiveData.observe(this) { result->
             when(result){

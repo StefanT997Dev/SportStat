@@ -1,10 +1,14 @@
 package com.nistruct.sportstat.hilt
 
+import com.nistruct.sportstat.data.mappers.PlayerResponseToPlayerMapper
+import com.nistruct.sportstat.data.mappers.UserResponseToPlayerMapper
 import com.nistruct.sportstat.repository.PlayerRepository
 import com.nistruct.sportstat.repository.PlayerRepositoryImpl
 import com.nistruct.sportstat.ui.enter_player.EnterPlayerActivity
 import com.nistruct.sportstat.ui.enter_player.EnterPlayerViewModelFactory
 import com.nistruct.sportstat.ui.players.PlayersViewModelFactory
+import com.nistruct.sportstat.usecase.GetPlayersUseCase
+import com.nistruct.sportstat.usecase.GetPlayersUseCaseImpl
 import com.nistruct.sportstat.usecase.PostPlayerUseCase
 import com.nistruct.sportstat.usecase.PostPlayerUseCaseImpl
 import dagger.Module
@@ -17,7 +21,13 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class EnterPlayerActivityModule {
+class Module {
+    @Singleton
+    @Provides
+    fun provideUserResponseToPlayerMapper():UserResponseToPlayerMapper{
+        return UserResponseToPlayerMapper()
+    }
+
     @Singleton
     @Provides
     fun provideCoroutineDispatcher():CoroutineDispatcher{
@@ -26,8 +36,8 @@ class EnterPlayerActivityModule {
 
     @Singleton
     @Provides
-    fun providePlayerRepository():PlayerRepository{
-        return PlayerRepositoryImpl()
+    fun providePlayerRepository(userResponseToPlayerMapper: UserResponseToPlayerMapper):PlayerRepository{
+        return PlayerRepositoryImpl(userResponseToPlayerMapper)
     }
 
     @Singleton
@@ -40,5 +50,12 @@ class EnterPlayerActivityModule {
     @Provides
     fun provideEnterPlayerViewModelFactory(useCase:PostPlayerUseCase):EnterPlayerViewModelFactory{
         return EnterPlayerViewModelFactory(useCase)
+    }
+
+    // PLAYER ACTIVITY PROVIDES
+    @Singleton
+    @Provides
+    fun provideUseCaseForPlayersActivity(playerRepository: PlayerRepository,coroutineDispatcher: CoroutineDispatcher):GetPlayersUseCase{
+        return GetPlayersUseCaseImpl(playerRepository,coroutineDispatcher)
     }
 }
