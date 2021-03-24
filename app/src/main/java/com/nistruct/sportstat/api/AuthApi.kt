@@ -1,14 +1,12 @@
 package com.nistruct.sportstat.api
 
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
+import com.nistruct.sportstat.data.models.api_models.LoginUserRequestBody
+import com.nistruct.sportstat.data.models.api_models.UserResponse
+import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface AuthApi{
 
-    @POST("auth/login")
-    fun login(
-        @Field("username")username:String,
-        @Field("password")password:String
-    ):Any
+    @POST("api/login")
+    suspend fun loginTrainer(@Body loginUserRequestBody: LoginUserRequestBody): UserResponse
 }

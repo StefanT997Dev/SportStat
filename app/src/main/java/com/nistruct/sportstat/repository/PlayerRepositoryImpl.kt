@@ -42,7 +42,7 @@ constructor(
 
         emit(RetrofitInstance.playerApi.postPlayer(postPlayerRequest))
     }
-        .map { userRespone ->
-            userResponseToPlayerMapper.map(userRespone)
+        .map { userResponse ->
+            userResponseToPlayerMapper.map(userResponse)
         }
 }

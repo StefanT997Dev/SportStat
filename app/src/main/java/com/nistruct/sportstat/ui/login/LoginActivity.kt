@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -11,16 +12,45 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.nistruct.sportstat.R
+import com.nistruct.sportstat.ui.enter_player.EnterPlayerViewModel
+import com.nistruct.sportstat.ui.enter_player.EnterPlayerViewModelFactory
 import com.nistruct.sportstat.ui.players.PlayersActivity
+import com.nistruct.sportstat.usecase.result.DataResult
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private lateinit var googleSignInClient:GoogleSignInClient
+
+    @Inject
+    lateinit var loginViewModelFactory: LoginViewModelFactory
+
+    private lateinit var viewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        viewModel = ViewModelProvider(this, loginViewModelFactory).get(LoginViewModel::class.java)
+
+        loginButton.setOnClickListener{
+            setTrainer()
+            viewModel.trainerLiveDataResult.observe(this){ result ->
+                when (result) {
+                    is DataResult.Success -> {
+                        Log.d("Response", result.data.email)
+                    }
+                    is DataResult.Error -> {
+                        Log.d("Response", "Error bro")
+                    }
+                    is DataResult.Loading -> {
+                        // Implement spinner
+                    }
+                }
+            }
+        }
 
         googleSignInButton.setOnClickListener{
             signIn()
@@ -31,6 +61,11 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
+    }
+
+    private fun setTrainer() {
+        viewModel.trainerEmail=emailEditText.text.toString()
+        viewModel.trainerPassword=passwordEditText.text.toString()
     }
 
     private fun signIn() {
