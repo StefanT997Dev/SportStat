@@ -4,6 +4,9 @@ plugins {
     id 'kotlin-android-extensions'
 }
 
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -66,7 +69,14 @@ dependencies {
     // Google Login
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+
+kapt{
+    correctErrorTypes true
 }

@@ -1,6 +1,5 @@
 package com.nistruct.sportstat.ui.enter_player
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,8 +9,13 @@ import com.nistruct.sportstat.usecase.PostPlayerUseCaseRequest
 import com.nistruct.sportstat.usecase.result.DataResult
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EnterPlayerViewModel(private val useCase: PostPlayerUseCase) : ViewModel(),
+class EnterPlayerViewModel
+@Inject
+constructor(
+    private val useCase: PostPlayerUseCase
+) : ViewModel(),
     EnterPlayerViewModelContract {
     override val playerLiveData: MutableLiveData<DataResult<Player>> = MutableLiveData()
 
@@ -31,7 +35,7 @@ class EnterPlayerViewModel(private val useCase: PostPlayerUseCase) : ViewModel()
                     playerPosition,
                     playerImage
                 )
-            ).collect {result->
+            ).collect { result ->
                 playerLiveData.value = result
             }
         }

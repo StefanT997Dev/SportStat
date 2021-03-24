@@ -11,5 +11,5 @@ interface PlayerApi {
     suspend fun getPlayers(): List<UserResponse>
 
     @POST("players")
-    suspend fun postPlayer(@Body playerRequestBody: PostPlayerRequestBody):PostPlayerRequestBody
+    suspend fun postPlayer(@Body playerRequestBody: PostPlayerRequestBody):UserResponse
 }

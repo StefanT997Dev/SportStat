@@ -9,8 +9,11 @@ import com.nistruct.sportstat.usecase.result.DataResult
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PlayersViewModel(private val useCase: GetPlayersUseCase) : ViewModel(),
+class PlayersViewModel
+@Inject
+constructor(private val useCase: GetPlayersUseCase) : ViewModel(),
     PlayersViewModelContract {
     override val playersLiveData: MutableLiveData<DataResult<List<Player>>> = MutableLiveData()
 

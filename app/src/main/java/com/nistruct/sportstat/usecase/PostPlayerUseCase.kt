@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 interface PostPlayerUseCase {
     suspend fun execute(request: PostPlayerUseCaseRequest): Flow<DataResult.Success<Player>>
@@ -20,7 +21,9 @@ data class PostPlayerUseCaseRequest(
     val playerImage: String
 )
 
-class PostPlayerUseCaseImpl(
+class PostPlayerUseCaseImpl
+@Inject
+constructor(
     private val playerRepository: PlayerRepository,
     private val coroutineDispatcher: CoroutineDispatcher
 ) : PostPlayerUseCase {
