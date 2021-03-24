@@ -25,9 +25,8 @@ class EnterPlayerActivity: AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, enterPlayerViewModelFactory).get(EnterPlayerViewModel::class.java)
 
-        setPlayer()
-
         savePlayerButton.setOnClickListener {
+            setPlayer()
             viewModel.enterPlayer()
         }
 

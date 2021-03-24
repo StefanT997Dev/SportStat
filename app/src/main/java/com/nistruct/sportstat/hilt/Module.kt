@@ -1,16 +1,13 @@
 package com.nistruct.sportstat.hilt
 
-import com.nistruct.sportstat.data.mappers.PlayerResponseToPlayerMapper
 import com.nistruct.sportstat.data.mappers.UserResponseToPlayerMapper
+import com.nistruct.sportstat.data.mappers.UserResponseToTrainerMapper
 import com.nistruct.sportstat.repository.PlayerRepository
 import com.nistruct.sportstat.repository.PlayerRepositoryImpl
-import com.nistruct.sportstat.ui.enter_player.EnterPlayerActivity
+import com.nistruct.sportstat.repository.login.UserRepository
+import com.nistruct.sportstat.repository.login.UserRepositoryImpl
 import com.nistruct.sportstat.ui.enter_player.EnterPlayerViewModelFactory
-import com.nistruct.sportstat.ui.players.PlayersViewModelFactory
-import com.nistruct.sportstat.usecase.GetPlayersUseCase
-import com.nistruct.sportstat.usecase.GetPlayersUseCaseImpl
-import com.nistruct.sportstat.usecase.PostPlayerUseCase
-import com.nistruct.sportstat.usecase.PostPlayerUseCaseImpl
+import com.nistruct.sportstat.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -57,5 +54,24 @@ class Module {
     @Provides
     fun provideUseCaseForPlayersActivity(playerRepository: PlayerRepository,coroutineDispatcher: CoroutineDispatcher):GetPlayersUseCase{
         return GetPlayersUseCaseImpl(playerRepository,coroutineDispatcher)
+    }
+
+    // LOGIN ACTIVITY PROVIDES
+    @Singleton
+    @Provides
+    fun provideUserResponseToTrainerMapper():UserResponseToTrainerMapper{
+        return UserResponseToTrainerMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(userResponseToTrainerMapper: UserResponseToTrainerMapper):UserRepository{
+        return UserRepositoryImpl(userResponseToTrainerMapper)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUseCaseForLoginOActivity(userRepository: UserRepository,coroutineDispatcher: CoroutineDispatcher):LoginUserUseCase{
+        return LoginUserUseCaseImpl(userRepository,coroutineDispatcher)
     }
 }
