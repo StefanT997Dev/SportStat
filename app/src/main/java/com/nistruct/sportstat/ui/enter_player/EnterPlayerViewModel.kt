@@ -41,5 +41,7 @@ constructor(
         }
     }
 
-
+    fun validatePlayerNameEntry(playerName:String):Boolean{
+        return playerName != ""
+    }
 }
