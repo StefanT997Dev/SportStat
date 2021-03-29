@@ -25,17 +25,19 @@ class RegisterActivity : AppCompatActivity() {
 
         registerButton.setOnClickListener{
             setTrainer()
-            viewModel.trainerLiveDataResult.observe(this){ result ->
-                when (result) {
-                    is DataResult.Success -> {
-                        Log.d("Response", result.data.email)
-                    }
-                    is DataResult.Error -> {
-                        Log.d("Response", "Error bro")
-                    }
-                    is DataResult.Loading -> {
-                        // Implement spinner
-                    }
+            viewModel.enterTrainer()
+        }
+
+        viewModel.trainerLiveDataResult.observe(this){ result ->
+            when (result) {
+                is DataResult.Success -> {
+                    Log.d("Response", result.data.email)
+                }
+                is DataResult.Error -> {
+                    Log.d("Response", "Error bro")
+                }
+                is DataResult.Loading -> {
+                    // Implement spinner
                 }
             }
         }

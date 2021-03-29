@@ -20,4 +20,8 @@ object RetrofitInstance {
     val authApi:AuthApi by lazy{
         retrofit.create(AuthApi::class.java)
     }
+
+    val teamApi:TeamApi by lazy{
+        retrofit.create(TeamApi::class.java)
+    }
 }

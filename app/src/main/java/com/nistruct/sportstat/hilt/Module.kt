@@ -1,5 +1,6 @@
 package com.nistruct.sportstat.hilt
 
+import com.nistruct.sportstat.data.mappers.TeamResponseToTeamMapper
 import com.nistruct.sportstat.data.mappers.UserResponseToPlayerMapper
 import com.nistruct.sportstat.data.mappers.UserResponseToTrainerMapper
 import com.nistruct.sportstat.repository.PlayerRepository
@@ -8,9 +9,14 @@ import com.nistruct.sportstat.repository.login.UserRepository
 import com.nistruct.sportstat.repository.login.UserRepositoryImpl
 import com.nistruct.sportstat.repository.register.UserRegisterRepository
 import com.nistruct.sportstat.repository.register.UserRegisterRepositoryImpl
+import com.nistruct.sportstat.repository.team.TeamRepository
+import com.nistruct.sportstat.repository.team.TeamRepositoryImpl
 import com.nistruct.sportstat.ui.enter_player.EnterPlayerViewModelFactory
 import com.nistruct.sportstat.ui.register.RegisterViewModelFactory
+import com.nistruct.sportstat.ui.team.EnterTeamViewModelFactory
 import com.nistruct.sportstat.usecase.*
+import com.nistruct.sportstat.usecase.team.PostTeamUseCase
+import com.nistruct.sportstat.usecase.team.PostTeamUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -95,5 +101,30 @@ class Module {
     @Provides
     fun provideRegisterViewModelFactory(useCase:RegisterUserUseCase):RegisterViewModelFactory{
         return RegisterViewModelFactory(useCase)
+    }
+
+    // ENTER TEAM PROVIDES
+    @Singleton
+    @Provides
+    fun proviteTeamResponseToTeamMapper():TeamResponseToTeamMapper{
+        return TeamResponseToTeamMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun provideTeamRepository(teamResponseToTeamMapper: TeamResponseToTeamMapper):TeamRepository{
+        return TeamRepositoryImpl(teamResponseToTeamMapper)
+    }
+
+    @Singleton
+    @Provides
+    fun providePostTeamUseCase(teamRepository: TeamRepository,coroutineDispatcher: CoroutineDispatcher):PostTeamUseCase{
+        return PostTeamUseCaseImpl(teamRepository,coroutineDispatcher)
+    }
+
+    @Singleton
+    @Provides
+    fun provideEnterTeamViewModelFactory(useCase:PostTeamUseCase):EnterTeamViewModelFactory{
+        return EnterTeamViewModelFactory(useCase)
     }
 }

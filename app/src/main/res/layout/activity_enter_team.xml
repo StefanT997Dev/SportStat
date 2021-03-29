@@ -14,30 +14,17 @@
         android:id="@+id/teamImageView"
         android:layout_width="307dp"
         android:layout_height="236dp"
-        android:layout_marginStart="484dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginStart="488dp"
+        android:layout_marginTop="108dp"
         android:src="@android:drawable/ic_menu_gallery"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/addImageTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/add_team_logo"
-        android:textColor="@color/textColor"
-        android:textSize="60sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/teamImageView" />
-
     <EditText
-        android:id="@+id/teamrNameEditText"
+        android:id="@+id/teamNameEditText"
         android:layout_width="725dp"
         android:layout_height="42dp"
-        android:layout_marginTop="588dp"
+        android:layout_marginTop="512dp"
         android:ems="10"
         android:hint="@string/team_name"
         android:inputType="textPersonName"
@@ -45,22 +32,37 @@
         android:textColor="@color/textColor"
         android:textColorHint="@color/textColor"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/savePlayerButton"
+        android:id="@+id/saveTeamButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="56dp"
         android:background="@drawable/custom_button"
         android:text="@string/create_team"
         android:textAllCaps="false"
         android:textColor="@color/textColor"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/teamrNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/teamNameEditText" />
+
+    <TextView
+        android:id="@+id/addImageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/add_team_logo"
+        android:textColor="@color/textColor"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teamImageView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
