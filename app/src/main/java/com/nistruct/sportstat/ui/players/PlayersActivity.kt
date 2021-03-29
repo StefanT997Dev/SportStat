@@ -11,11 +11,12 @@ import com.nistruct.sportstat.R
 import com.nistruct.sportstat.repository.PlayerRepositoryImpl
 import com.nistruct.sportstat.usecase.GetPlayersUseCaseImpl
 import com.nistruct.sportstat.usecase.result.DataResult
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_players_recycler_view.*
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class PlayersActivity : AppCompatActivity() {
     @Inject lateinit var playersViewModelFactory:PlayersViewModelFactory
 

@@ -12,6 +12,7 @@ import com.nistruct.sportstat.repository.register.UserRegisterRepositoryImpl
 import com.nistruct.sportstat.repository.team.TeamRepository
 import com.nistruct.sportstat.repository.team.TeamRepositoryImpl
 import com.nistruct.sportstat.ui.enter_player.EnterPlayerViewModelFactory
+import com.nistruct.sportstat.ui.players.PlayersViewModelFactory
 import com.nistruct.sportstat.ui.register.RegisterViewModelFactory
 import com.nistruct.sportstat.ui.team.EnterTeamViewModelFactory
 import com.nistruct.sportstat.usecase.*
@@ -59,6 +60,12 @@ class Module {
     }
 
     // PLAYER ACTIVITY PROVIDES
+    @Singleton
+    @Provides
+    fun providePlayersViewModelFactory(useCase:GetPlayersUseCase):PlayersViewModelFactory{
+        return PlayersViewModelFactory(useCase)
+    }
+
     @Singleton
     @Provides
     fun provideUseCaseForPlayersActivity(playerRepository: PlayerRepository,coroutineDispatcher: CoroutineDispatcher):GetPlayersUseCase{

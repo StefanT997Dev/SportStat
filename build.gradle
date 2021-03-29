@@ -5,6 +5,9 @@ buildscript {
         mavenCentral()
         gradlePluginPortal()
     }
+    ext {
+        kotlin_version = '1.4.31'
+    }
     ext.hilt_version = '2.33-beta'
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.2"
