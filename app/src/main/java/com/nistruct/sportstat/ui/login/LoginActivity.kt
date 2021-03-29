@@ -12,8 +12,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.nistruct.sportstat.R
-import com.nistruct.sportstat.ui.enter_player.EnterPlayerViewModel
-import com.nistruct.sportstat.ui.enter_player.EnterPlayerViewModelFactory
 import com.nistruct.sportstat.ui.players.PlayersActivity
 import com.nistruct.sportstat.usecase.result.DataResult
 import dagger.hilt.android.AndroidEntryPoint

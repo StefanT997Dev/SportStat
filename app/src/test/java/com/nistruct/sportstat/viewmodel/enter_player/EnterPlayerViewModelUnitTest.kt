@@ -6,7 +6,6 @@ import com.nistruct.sportstat.data.models.ui_models.Player
 import com.nistruct.sportstat.extension.getOrAwaitValue
 import com.nistruct.sportstat.ui.enter_player.EnterPlayerViewModel
 import com.nistruct.sportstat.usecase.PostPlayerUseCase
-import com.nistruct.sportstat.usecase.PostPlayerUseCaseRequest
 import com.nistruct.sportstat.usecase.result.DataResult
 import com.nistruct.sportstat.util.TestCoroutineRule
 import junit.framework.Assert.assertTrue
@@ -17,7 +16,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.anyObject
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
@@ -76,7 +74,7 @@ class EnterPlayerViewModelUnitTest {
 
             `when`(
                 postPlayeruseCase.execute(
-                    any()
+                    anyObject()
                 )
             )
                 .thenReturn(flow { emit(DataResult.Success(Player(1, "sdsds", "Miki", "front"))) })

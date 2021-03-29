@@ -6,7 +6,10 @@ import com.nistruct.sportstat.repository.PlayerRepository
 import com.nistruct.sportstat.repository.PlayerRepositoryImpl
 import com.nistruct.sportstat.repository.login.UserRepository
 import com.nistruct.sportstat.repository.login.UserRepositoryImpl
+import com.nistruct.sportstat.repository.register.UserRegisterRepository
+import com.nistruct.sportstat.repository.register.UserRegisterRepositoryImpl
 import com.nistruct.sportstat.ui.enter_player.EnterPlayerViewModelFactory
+import com.nistruct.sportstat.ui.register.RegisterViewModelFactory
 import com.nistruct.sportstat.usecase.*
 import dagger.Module
 import dagger.Provides
@@ -73,5 +76,24 @@ class Module {
     @Provides
     fun provideUseCaseForLoginOActivity(userRepository: UserRepository,coroutineDispatcher: CoroutineDispatcher):LoginUserUseCase{
         return LoginUserUseCaseImpl(userRepository,coroutineDispatcher)
+    }
+
+    // REGISTER ACTIVITY PROVIDES
+    @Singleton
+    @Provides
+    fun provideUserRegisterRepository(userResponseToTrainerMapper: UserResponseToTrainerMapper):UserRegisterRepository{
+        return UserRegisterRepositoryImpl(userResponseToTrainerMapper)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRegisterUserUseCase(userRegisterRepository: UserRegisterRepository,coroutineDispatcher: CoroutineDispatcher):RegisterUserUseCase{
+        return RegisterUserUseCaseImpl(userRegisterRepository,coroutineDispatcher)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRegisterViewModelFactory(useCase:RegisterUserUseCase):RegisterViewModelFactory{
+        return RegisterViewModelFactory(useCase)
     }
 }

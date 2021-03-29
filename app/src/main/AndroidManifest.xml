@@ -14,7 +14,7 @@
         android:screenOrientation="landscape"
         android:theme="@style/Theme.Sportstat">
         <activity
-            android:name=".ui.enter_player.EnterPlayerActivity"
+            android:name=".ui.register.RegisterActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.Design.NoActionBar"
             android:exported="true">
