@@ -2,6 +2,7 @@ package com.nistruct.sportstat.ui.enter_player
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -60,21 +61,39 @@ class EnterPlayerActivity : AppCompatActivity() {
         }
 
         addImageTextView.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.CAMERA
-                ) == PackageManager.PERMISSION_GRANTED
-            ){
-                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(intent, CAMERA_REQUEST_CODE)
-            }else{
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.CAMERA),
-                    CAMERA_PERMISSION_CODE
-                )
+            val pictureDialog = AlertDialog.Builder(this)
+            pictureDialog.setTitle("Select Action")
+            val pictureDialogItems = arrayOf("Select photo from Gallery",
+                "Capture photo from camera")
+            pictureDialog.setItems(pictureDialogItems){
+                dialog,which->
+                when(which){
+                    0 -> chosePhotoFromGallery()
+                    1 -> {
+                        if (ContextCompat.checkSelfPermission(
+                                this,
+                                Manifest.permission.CAMERA
+                            ) == PackageManager.PERMISSION_GRANTED
+                        ){
+                            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                            startActivityForResult(intent, CAMERA_REQUEST_CODE)
+                        }else{
+                            ActivityCompat.requestPermissions(
+                                this,
+                                arrayOf(Manifest.permission.CAMERA),
+                                CAMERA_PERMISSION_CODE
+                            )
+                        }
+                    }
+                }
             }
+            pictureDialog.show()
+
         }
+    }
+
+    private fun chosePhotoFromGallery(){
+
     }
 
     private fun setPlayer() {
@@ -92,11 +111,11 @@ class EnterPlayerActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        if(requestCode == CAMERA_PERMISSION_CODE){
-            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 startActivityForResult(intent, CAMERA_REQUEST_CODE)
-            }else{
+            } else {
                 Toast.makeText(
                     this,
                     "Oops you denied the permission for camera.",
@@ -109,8 +128,8 @@ class EnterPlayerActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(resultCode == Activity.RESULT_OK){
-            if(requestCode== CAMERA_REQUEST_CODE){
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST_CODE) {
                 val thumbnail: Bitmap = data!!.extras!!.get("data") as Bitmap
                 playerImageView.setImageBitmap(thumbnail)
             }

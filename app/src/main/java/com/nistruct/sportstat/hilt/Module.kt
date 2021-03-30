@@ -1,5 +1,6 @@
 package com.nistruct.sportstat.hilt
 
+import com.nistruct.sportstat.data.mappers.StatisticsResponseToStatisticsMapper
 import com.nistruct.sportstat.data.mappers.TeamResponseToTeamMapper
 import com.nistruct.sportstat.data.mappers.UserResponseToPlayerMapper
 import com.nistruct.sportstat.data.mappers.UserResponseToTrainerMapper
@@ -9,6 +10,8 @@ import com.nistruct.sportstat.repository.login.UserRepository
 import com.nistruct.sportstat.repository.login.UserRepositoryImpl
 import com.nistruct.sportstat.repository.register.UserRegisterRepository
 import com.nistruct.sportstat.repository.register.UserRegisterRepositoryImpl
+import com.nistruct.sportstat.repository.statistics.StatisticsRepository
+import com.nistruct.sportstat.repository.statistics.StatisticsRepositoryImpl
 import com.nistruct.sportstat.repository.team.TeamRepository
 import com.nistruct.sportstat.repository.team.TeamRepositoryImpl
 import com.nistruct.sportstat.ui.enter_player.EnterPlayerViewModelFactory
@@ -16,6 +19,8 @@ import com.nistruct.sportstat.ui.players.PlayersViewModelFactory
 import com.nistruct.sportstat.ui.register.RegisterViewModelFactory
 import com.nistruct.sportstat.ui.team.EnterTeamViewModelFactory
 import com.nistruct.sportstat.usecase.*
+import com.nistruct.sportstat.usecase.statistics.GetStatisticsUseCase
+import com.nistruct.sportstat.usecase.statistics.GetStatisticsUseCaseImpl
 import com.nistruct.sportstat.usecase.team.PostTeamUseCase
 import com.nistruct.sportstat.usecase.team.PostTeamUseCaseImpl
 import dagger.Module
@@ -113,7 +118,7 @@ class Module {
     // ENTER TEAM PROVIDES
     @Singleton
     @Provides
-    fun proviteTeamResponseToTeamMapper():TeamResponseToTeamMapper{
+    fun provideTeamResponseToTeamMapper():TeamResponseToTeamMapper{
         return TeamResponseToTeamMapper()
     }
 
@@ -133,5 +138,24 @@ class Module {
     @Provides
     fun provideEnterTeamViewModelFactory(useCase:PostTeamUseCase):EnterTeamViewModelFactory{
         return EnterTeamViewModelFactory(useCase)
+    }
+
+    // STATISTICS PROVIDES
+    @Singleton
+    @Provides
+    fun provideStatisticsResponseToStatisticsMapper():StatisticsResponseToStatisticsMapper{
+        return StatisticsResponseToStatisticsMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun provideStatisticsRepository(statisticsResponseToStatisticsMapper: StatisticsResponseToStatisticsMapper):StatisticsRepository{
+        return StatisticsRepositoryImpl(statisticsResponseToStatisticsMapper)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetStatisticsUseCase(statisticsRepository: StatisticsRepository,coroutineDispatcher: CoroutineDispatcher):GetStatisticsUseCase{
+        return GetStatisticsUseCaseImpl(statisticsRepository,coroutineDispatcher)
     }
 }
