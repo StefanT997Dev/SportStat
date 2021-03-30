@@ -4,8 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nistruct.sportstat.data.models.ui_models.Statistics
+import com.nistruct.sportstat.usecase.RegisterUseCaseRequest
 import com.nistruct.sportstat.usecase.result.DataResult
 import com.nistruct.sportstat.usecase.statistics.GetStatisticsUseCase
+import com.nistruct.sportstat.usecase.statistics.PostStatisticsUseCaseRequest
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -27,6 +29,14 @@ constructor(
             }
 
             // When posting data on the UI it has to be switched to a Main thread using withContext(Dispatchers.Main)
+        }
+    }
+
+    override fun enterStatistics() {
+        viewModelScope.launch {
+            useCase.execute(
+
+            )
         }
     }
 }

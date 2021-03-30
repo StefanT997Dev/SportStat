@@ -8,4 +8,6 @@ interface StatisticsViewModelContract {
     val statisticsLiveData: LiveData<DataResult<List<Statistics>>>
 
     fun getStatistics()
+
+    fun enterStatistics()
 }
