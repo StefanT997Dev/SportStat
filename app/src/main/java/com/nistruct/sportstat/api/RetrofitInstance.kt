@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    private const val BASE_URL="https://run.mocky.io/"
+    private const val BASE_URL="http://localhost:5000/"
 
     private val retrofit by lazy{
         Retrofit.Builder()
@@ -25,7 +25,7 @@ object RetrofitInstance {
         retrofit.create(TeamApi::class.java)
     }
 
-    val statisticsApi:StatisticsApi by lazy{
-        retrofit.create(StatisticsApi::class.java)
+    val categoriesApi:CategoriesApi by lazy{
+        retrofit.create(CategoriesApi::class.java)
     }
 }

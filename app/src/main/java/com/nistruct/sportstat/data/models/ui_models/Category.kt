@@ -1,7 +1,7 @@
 package com.nistruct.sportstat.data.models.ui_models
 
-data class Statistics(
+data class Category(
     val id:Int,
     val name:String,
-    val value: Int
+    val numberOfConsultants: Int
 )

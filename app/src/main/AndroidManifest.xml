@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sportstat">
         <activity
-            android:name=".ui.statistics.StatisticsActivity"
+            android:name=".ui.categories.CategoriesActivity"
             android:exported="true"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.Design.NoActionBar">

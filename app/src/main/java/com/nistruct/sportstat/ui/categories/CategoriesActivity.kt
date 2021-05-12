@@ -1,4 +1,4 @@
-package com.nistruct.sportstat.ui.statistics
+package com.nistruct.sportstat.ui.categories
 
 import android.os.Bundle
 import android.util.Log
@@ -10,19 +10,21 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class StatisticsActivity:AppCompatActivity() {
+class CategoriesActivity:AppCompatActivity() {
     @Inject
-    lateinit var statisticsViewModelFactory: StatisticsViewModelFactory
+    lateinit var categoriesViewModelFactory: CategoriesViewModelFactory
 
-    private lateinit var viewModel: StatisticsViewModel
+    private lateinit var viewModel: CategoriesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_enter_statistics)
 
-        viewModel = ViewModelProvider(this, statisticsViewModelFactory).get(StatisticsViewModel::class.java)
+        viewModel = ViewModelProvider(this, categoriesViewModelFactory).get(CategoriesViewModel::class.java)
 
-        viewModel.statisticsLiveData.observe(this){ result ->
+        viewModel.getCategories()
+
+        viewModel.categoryLiveData.observe(this){ result ->
             when (result) {
                 is DataResult.Success -> {
                     Log.d("Response", result.data[0].name)
